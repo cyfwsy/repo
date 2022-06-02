@@ -1,0 +1,18 @@
+'''客户端与小调度器的服务器联系'''
+from socket import socket,AF_INET,SOCK_STREAM
+c1 = socket(AF_INET,SOCK_STREAM)
+c2 = socket(AF_INET,SOCK_STREAM)
+c3 = socket(AF_INET,SOCK_STREAM)
+c1.connect(('localhost',16000))
+c2.connect(('localhost',16000))
+c3.connect(('localhost',16000))
+c1.send(b'first information \n')
+print(c1.recv(1024))
+c1.send(b'hello , welcome \n')
+print(c1.recv(1024))
+# c1.send(b'')
+# c1.send(b'stop \n')
+c2.send(b'second information \n')
+print(c2.recv(1024))
+c3.send('中文信息 \n'.encode('utf-8'))
+print(c3.recv(1024))
