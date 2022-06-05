@@ -8,4 +8,4 @@ def counter(msg):
     print("second")
 
 
-counter("we are in projecgt")
+counter("we are in project")
