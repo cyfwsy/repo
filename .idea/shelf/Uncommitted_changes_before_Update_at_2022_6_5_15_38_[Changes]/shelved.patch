@@ -1,0 +1,22 @@
+Index: new_scripts/counter1'py.py
+===================================================================
+diff --git a/new_scripts/counter1'py.py b/new_scripts/counter1'py.py
+deleted file mode 100644
+--- a/new_scripts/counter1'py.py	(revision f8a70f2273e2780d8b7a4686e776404d6604b166)
++++ /dev/null	(revision f8a70f2273e2780d8b7a4686e776404d6604b166)
+@@ -1,3 +0,0 @@
+-"counter2"
+-for i in range(50):
+-    print(i,end=',')
+\ No newline at end of file
+Index: new_scripts/counter.py
+===================================================================
+diff --git a/new_scripts/counter.py b/new_scripts/counter.py
+deleted file mode 100644
+--- a/new_scripts/counter.py	(revision f8a70f2273e2780d8b7a4686e776404d6604b166)
++++ /dev/null	(revision f8a70f2273e2780d8b7a4686e776404d6604b166)
+@@ -1,4 +0,0 @@
+-'''new python program'''
+-for i in range(100):
+-    print(i)
+-print("end")

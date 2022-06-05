@@ -1,0 +1,17 @@
+Index: script_dir/byte_encoding.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>'''编码转换'''\r\nimport base64\r\n# def uni_bytes(str):\r\n#     a = base64.b64encode(str)\r\n#     print(str)\r\n#     print(a)\r\n#     b = base64.b64decode(a)\r\n#     print(a.decode('utf-8'))\r\n#     print(b.decode('utf-8'))\r\n#\r\n# str = '中文信息'.encode('utf-8')\r\n# str1 = '景观大道'.encode('utf-8')\r\n# uni_bytes(str)\r\n# uni_bytes(str1)\r\ntext = 'python 实例'.encode('utf-8')\r\nprint(text)\r\nprint(text.decode('utf-8'))\r\ntext1 = 'python 实例'.encode('utf-8')\r\nb = base64.b64encode(text1)\r\nc = base64.b64decode(b)\r\nprint(b)\r\nprint(c)\r\nprint(\"-----------------------------\")\r\nprint(\"+++++++++++++++++++++++++++++\")\r\nprint(\"=============================\")\r\nprint(\"end end end\")
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/script_dir/byte_encoding.py b/script_dir/byte_encoding.py
+--- a/script_dir/byte_encoding.py	(revision d61719d2e12e2b13beeca3bc8ec232ec8208ba0d)
++++ b/script_dir/byte_encoding.py	(date 1654223109663)
+@@ -23,4 +23,4 @@
+ print("-----------------------------")
+ print("+++++++++++++++++++++++++++++")
+ print("=============================")
+-print("end end end")
+\ No newline at end of file
++print("end end end")
