@@ -23,7 +23,11 @@ print(c)
 print("-----------------------------")
 print("+++++++++++++++++++++++++++++")
 print("=============================")
+<<<<<<< HEAD
 print("start,start,start")
 print("middle,middle,middle")
 print("last last")
 print("last last last last")
+=======
+print("in master branch , in master branch")
+>>>>>>> 84cc99004216263126bb65607a4ae05375c3b039
