@@ -22,7 +22,7 @@ class Exchange:
             for task in tasks:
                 self.detach(task)
 
-    def send(self,msg):
+    def publish(self,msg):
         for subscriber in self._subscribers:
             subscriber.send(msg)
 
@@ -51,5 +51,6 @@ task_currents = (DisplayMessage() for i in range(10))
 
 exc = get_exchange('A_center')
 with exc.subscribe(*task_currents):
-    exc.send('hello, Andi')
-    exc.send('hello 老王')
+    exc.publish('hello, Andi')
+    exc.publish('hello 老王')
+    exc.publish('hello jone')
