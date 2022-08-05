@@ -12,7 +12,8 @@ def func():
 def main():
     f = func()
     # f.send(None)
-    print(f.send(None))
+    # print(f.send(None))
+    print(next(f))
     n = 10
     while n > 0:
         data = f.send(n)
