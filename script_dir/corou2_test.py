@@ -11,7 +11,8 @@ def func():
 
 def main():
     f = func()
-    f.send(None)
+    # f.send(None)
+    print(f.send(None))
     n = 10
     while n > 0:
         data = f.send(n)
