@@ -1,5 +1,7 @@
 "测试 yield from"
 import time
+
+
 def func():
     result = 'quit'
     while True:
@@ -17,9 +19,8 @@ def main():
     n = 10
     while n > 0:
         data = f.send(n)
-        print(n,data)
+        print(n, data)
         n -= 1
-
 
 
 if __name__ == '__main__':
