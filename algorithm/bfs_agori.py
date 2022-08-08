@@ -1,6 +1,8 @@
 '广度优先算法'
 from collections import deque
-def bfs(graph,start=0):
+
+
+def bfs(graph, start=0):
     to_visit = deque()
     dist = [float('inf')] * len(graph)
     prec = [None] * len(graph)
@@ -14,9 +16,10 @@ def bfs(graph,start=0):
                 dist[neighbor] = dist[node] + 1
                 prec[neighbor] = node
                 to_visit.appendleft(neighbor)
-    return dist,prec
+    return dist, prec
 
-def prec_node_map(prec,start):
+
+def prec_node_map(prec, start):
     "create a mapping node to post_node list"
     map_node = {}
     for i in range(len(prec)):
@@ -31,11 +34,10 @@ def prec_node_map(prec,start):
     for i in map_node.keys():
         map_node[i] = set(map_node[i])
     return map_node
-    
-            
-graph_1 = [[1,4],[0,5],[3,5],[2,6],[0,5,6],[1,2,4],[3,4]]
-dist,prec = bfs(graph_1,start=5)
+
+
+graph_1 = [[1, 4], [0, 5], [3, 5], [2, 6], [0, 5, 6], [1, 2, 4], [3, 4]]
+dist, prec = bfs(graph_1, start=5)
 print(dist)
 print(prec)
-print(prec_node_map(prec,5))
-    
+print(prec_node_map(prec, 5))
