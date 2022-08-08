@@ -37,7 +37,7 @@ def prec_node_map(prec, start):
 
 
 graph_1 = [[1, 4], [0, 5], [3, 5], [2, 6], [0, 5, 6], [1, 2, 4], [3, 4]]
-dist, prec = bfs(graph_1, start=5)
+dist, prec = bfs(graph_1, start=4)
 print(dist)
 print(prec)
 print(prec_node_map(prec, 5))
