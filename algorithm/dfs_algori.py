@@ -10,4 +10,4 @@ seen = []
 for i in range(len(graph_1)):
     seen.append(False) 
 print(seen)
-dfs_recursive(graph_1,3,seen)
+dfs_recursive(graph_1,5,seen)
