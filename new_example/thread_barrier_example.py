@@ -13,6 +13,7 @@ def main(parties):
     print(f'in main thread',threading.get_native_id())
     
 if __name__ == '__main__':
+    print(threading.main_thread())
     main(10)
         
     
