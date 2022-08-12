@@ -1,3 +1,4 @@
+"网格的深度遍历"
 from copy import deepcopy
 
 def dfs_grid(grid,i,j,mark='X',free='.'):
