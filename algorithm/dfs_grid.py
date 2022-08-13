@@ -1,3 +1,4 @@
+"深度優先找連通分量"
 def dfs_grid(grid, i, j, mark, free):
     grid[i][j] = mark
     height = len(grid)
