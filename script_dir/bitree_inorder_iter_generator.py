@@ -7,7 +7,7 @@ def inorder(t):
         for x in inorder(t.left):
             yield x
 
-        yield t.label
+        yield t
 
         for x in inorder(t.right):
             yield x
@@ -38,4 +38,4 @@ t5.right = t9
 
 t_gen = inorder(t1)
 for node in t_gen:
-    print(node)
+    print(node.label)
