@@ -37,5 +37,6 @@ t5.left = t8
 t5.right = t9
 
 t_gen = inorder(t1)
+print(t_gen)
 for node in t_gen:
     print(node.label)

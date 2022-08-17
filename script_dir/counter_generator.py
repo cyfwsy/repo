@@ -10,8 +10,9 @@ def counter(maximum):
             
 g = counter(10)
 print(g)
+# print(next(g))
 print(next(g))
-print(next(g))
+# print(g.send(None))
 print(g.send(7))
 print(next(g))
 print(next(g))
