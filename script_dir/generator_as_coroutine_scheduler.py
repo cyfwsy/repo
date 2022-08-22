@@ -32,14 +32,15 @@ class TaskScheduler:
                 next(task)
                 self._task_queue.append(task)
             except StopIteration:
-                pass
+                print('one task finished',task)
 
 
 #示例
 sched = TaskScheduler()
 sched.new_task(countdown(10))
 sched.new_task(countdown(5))
-sched.new_task(countup(15))
+sched.new_task(countup(5))
+sched.new_task(countup(5))
 sched.run()
 
 
