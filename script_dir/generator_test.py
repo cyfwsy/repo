@@ -5,8 +5,8 @@ def fun():
     print(value)
 
 f = fun()
-print(f.send(None))
-# print(next(f))
+# print(f.send(None))
+print(next(f))
 try:
     print(f.send('welcome'))
 except StopIteration:

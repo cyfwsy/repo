@@ -91,10 +91,10 @@ if __name__ == '__main__':
     done_queue = ClosableQueue()
 
     download_threads = start_threads(3,download,download_queue,resize_queue)
-    resize_threads = start_threads(4,resize,resize_queue,upload_queue)
-    upload_threads = start_threads(5,upload,upload_queue,done_queue)
+    resize_threads = start_threads(2,resize,resize_queue,upload_queue)
+    upload_threads = start_threads(2,upload,upload_queue,done_queue)
 
-    for _ in range(500):
+    for _ in range(10):
         download_queue.put([2,4,5,6,7])
 
     stop_threads(download_queue,download_threads)

@@ -52,5 +52,3 @@ task_currents = (DisplayMessage() for i in range(10))
 exc = get_exchange('A_center')
 with exc.subscribe(*task_currents):
     exc.publish('hello, Andi')
-    exc.publish('hello 老王')
-    exc.publish('hello jone')
