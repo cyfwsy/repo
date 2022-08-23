@@ -8,9 +8,12 @@ from multiprocessing import Process, Queue, current_process, freeze_support
 #
 
 def worker(input, output):
+    count = 0
     for func, args in iter(input.get, 'STOP'):
         result = calculate(func, args)
+        count += 1
         output.put(result)
+    print('process exit {},complete {} calculate'.format(current_process().name,count))
 
 #
 # Function used to calculate result
