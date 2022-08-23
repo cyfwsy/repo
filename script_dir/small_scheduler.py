@@ -131,7 +131,7 @@ if __name__ == '__main__':
 class EchoServer:
     def __init__(self,addr,sched):
         self.sched = sched
-        sched.new(self.server_loop(addr))
+        self.sched.new(self.server_loop(addr))
     def server_loop(self,addr):
         s = Socket(socket(AF_INET,SOCK_STREAM))
         s.bind(addr)
