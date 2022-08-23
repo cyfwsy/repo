@@ -29,6 +29,15 @@ if __name__ == '__main__':
     child1.add_child(Node(3))
     child1.add_child(Node(4))
     child2.add_child(Node(5))
+    child2.add_child(Node(6))
+    child2.add_child(Node(7))
+    child2.add_child(Node(8))
+    child3 = Node(8)
+    child2.add_child(Node(8))
+    child2.add_child(Node(9))
+    child2.add_child(Node(11))
+    child3.add_child(Node(10))
+    
 
     for ch in root.depth_first():
         print(ch)

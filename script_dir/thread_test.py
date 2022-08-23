@@ -4,7 +4,7 @@ import multiprocessing
 class CountdownThread(Thread):
     def __init__(self,n):
         super().__init__()
-        self.n = 0
+        self.n = n
 
     def run(self):
         while self.n > 0:
@@ -12,7 +12,7 @@ class CountdownThread(Thread):
             self.n -= 1
             time.sleep(5)
 c = CountdownThread(5)
-# print('starting')
-# c.start()
-# print('ending')
-# c.join()
+print('starting')
+c.start()
+print('ending')
+c.join()
