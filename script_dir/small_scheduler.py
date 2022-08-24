@@ -1,82 +1,88 @@
 ''' 小型操作系统，一个调度器的实现，费脑筋，要仔细研究'''
 from collections import deque
 from select import select
-#this class represents a generic yield event in the scheduler
+
+
+# this class represents a generic yield event in the scheduler
 
 class YieldEvent:
-    def handle_yield(self,sched,task):
-        pass
-    def handle_resume(self,sched,task):
+    def handle_yield(self, sched, task):
         pass
 
-#Task Scheduler
+    def handle_resume(self, sched, task):
+        pass
+
+
+# Task Scheduler
 class Scheduler:
     def __init__(self):
-        self._numtasks = 0 #Total number of tasks
-        self._ready = deque() # Tasks ready to run
-        self._read_waiting = {} #Tasks waiting to read
-        self._write_waiting = {} #Tasks waiting to write
+        self._numtasks = 0  # Total number of tasks
+        self._ready = deque()  # Tasks ready to run
+        self._read_waiting = {}  # Tasks waiting to read
+        self._write_waiting = {}  # Tasks waiting to write
 
     # Poll for i/o events and restart waiting tasks
     def _iopoll(self):
-        rset,wset,eset = select(self._read_waiting,self._write_waiting,[])
+        rset, wset, eset = select(self._read_waiting, self._write_waiting, [])
         for r in rset:
-            evt,task = self._read_waiting.pop(r)
-            evt.handle_resume(self,task)
+            evt, task = self._read_waiting.pop(r)
+            evt.handle_resume(self, task)
 
         for w in wset:
-            evt,task = self._write_waiting.pop(w)
-            evt.handle_resume(self,task)
+            evt, task = self._write_waiting.pop(w)
+            evt.handle_resume(self, task)
 
-    def new(self,task):
+    def new(self, task):
         '''Add a newly started task to the scheduler'''
-        self._ready.append((task,None))
+        self._ready.append((task, None))
         self._numtasks += 1
 
-    def add_ready(self,task,msg=None):
+    def add_ready(self, task, msg=None):
         '''Append a already started task to the ready queue. msg is what to send
         into the task when it resumes'''
-        self._ready.append((task,msg))
+        self._ready.append((task, msg))
 
-    #Add a task to the reading set
-    def _read_wait(self,fileno,evt,task):
-        self._read_waiting[fileno] = (evt,task)
+    # Add a task to the reading set
+    def _read_wait(self, fileno, evt, task):
+        self._read_waiting[fileno] = (evt, task)
 
-    #Add a task to the writing set
-    def _write_wait(self,fileno,evt,task):
-        self._write_waiting[fileno] = (evt,task)
+    # Add a task to the writing set
+    def _write_wait(self, fileno, evt, task):
+        self._write_waiting[fileno] = (evt, task)
 
     def run(self):
         '''Run the task scheduler until there are no tasks'''
         while self._numtasks:
             if not self._ready:
                 self._iopoll()
-            task,msg = self._ready.popleft()
+            task, msg = self._ready.popleft()
             try:
-                #Run the coroutine to the next yirld
+                # Run the coroutine to the next yirld
                 r = task.send(msg)
-                if isinstance(r,YieldEvent):
-                    r.handle_yield(self,task)
+                if isinstance(r, YieldEvent):
+                    r.handle_yield(self, task)
                 else:
                     raise RuntimeError('unrecognized yield event')
             except StopIteration:
                 self._numtasks -= 1
 
-#Example implementation 0f coroutine-based socket i/o
+
+# Example implementation 0f coroutine-based socket i/o
 class ReadSocket(YieldEvent):
-    def __init__(self,sock,nbytes):
+    def __init__(self, sock, nbytes):
         self.sock = sock
         self.nbytes = nbytes
 
-    def handle_yield(self,sched,task):
-        sched._read_wait(self.sock.fileno(),self,task)
+    def handle_yield(self, sched, task):
+        sched._read_wait(self.sock.fileno(), self, task)
 
-    def handle_resume(self,sched,task):
+    def handle_resume(self, sched, task):
         data = self.sock.recv(self.nbytes)
-        sched.add_ready(task,data)
+        sched.add_ready(task, data)
+
 
 class WriteSocket(YieldEvent):
-    def __init__(self,sock,data):
+    def __init__(self, sock, data):
         self.sock = sock
         self.data = data
 
@@ -84,11 +90,12 @@ class WriteSocket(YieldEvent):
         sched._write_wait(self.sock.fileno(), self, task)
 
     def handle_resume(self, sched, task):
-        nsent  = self.sock.send(self.data)
+        nsent = self.sock.send(self.data)
         sched.add_ready(task, nsent)
 
+
 class AcceptSocket(YieldEvent):
-    def __init__(self,sock):
+    def __init__(self, sock):
         self.sock = sock
 
     def handle_yield(self, sched, task):
@@ -97,25 +104,33 @@ class AcceptSocket(YieldEvent):
     def handle_resume(self, sched, task):
         r = self.sock.accept()
         sched.add_ready(task, r)
-#Wrapper around a socket object for use with yield
+
+
+# Wrapper around a socket object for use with yield
 class Socket(object):
-    def __init__(self,sock):
+    def __init__(self, sock):
         self._sock = sock
-    def recv(self,maxbytes):
-        return ReadSocket(self._sock,maxbytes)
-    def send(self,data):
-        return WriteSocket(self._sock,data)
+
+    def recv(self, maxbytes):
+        return ReadSocket(self._sock, maxbytes)
+
+    def send(self, data):
+        return WriteSocket(self._sock, data)
+
     def accept(self):
         return AcceptSocket(self._sock)
+
     def __getattr__(self, name):
-        return getattr(self._sock,name)
+        return getattr(self._sock, name)
+
 
 if __name__ == '__main__':
-    from socket import socket,AF_INET,SOCK_STREAM
+    from socket import socket, AF_INET, SOCK_STREAM
     import time
 
-    #Example of a function involving generators.this should be called using
-    #line = yield from reading(sock)
+
+    # Example of a function involving generators.this should be called using
+    # line = yield from readline(sock)
     def readline(sock):
         chars = []
         while True:
@@ -127,26 +142,28 @@ if __name__ == '__main__':
                 break
         return b''.join(chars)
 
-#Echo server using generators
+
+# Echo server using generator
 class EchoServer:
-    def __init__(self,addr,sched):
+    def __init__(self, addr, sched):
         self.sched = sched
         self.sched.new(self.server_loop(addr))
-    def server_loop(self,addr):
-        s = Socket(socket(AF_INET,SOCK_STREAM))
+
+    def server_loop(self, addr):
+        s = Socket(socket(AF_INET, SOCK_STREAM))
         s.bind(addr)
         s.listen(5)
         while True:
-            conn,addr = yield s.accept()
-            print('Got connection from ',addr)
+            conn, addr = yield s.accept()
+            print('Got connection from ', addr)
             self.sched.new(self.client_handler(Socket(conn)))
 
-    def client_handler(self,client):
+    def client_handler(self, client):
         while True:
             line = yield from readline(client)
             if not line:
                 break
-            line = b'GOT:'+ line
+            line = b'GOT:' + line
             while line:
                 nsent = yield client.send(line)
                 line = line[nsent:]
@@ -154,6 +171,7 @@ class EchoServer:
         print('Client closed')
         client.close()
 
+
 sched = Scheduler()
-EchoServer(('',16000),sched)
+EchoServer(('', 16000), sched)
 sched.run()
