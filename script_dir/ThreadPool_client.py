@@ -7,8 +7,8 @@ def main(num_clients):
         text = '中文信息---information'.encode('utf-8')
         sock.send(text)
         ret_value = sock.recv(1024)
-        print(ret_value)
+        # print(ret_value)
         print(ret_value.decode('utf-8'))
 
 if __name__ == '__main__':
-    main(2)
+    main(5)
