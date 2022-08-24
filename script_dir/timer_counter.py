@@ -47,9 +47,9 @@ t.reset()
 
 # Use2 As a context manager
 with t:
-    countdown(1000000)
+    countdown(10000000)
 print('Elapsed time',t.elapsed)
 
 with Timer(time.process_time) as t2:
-    countdown(50000000)
+    countdown(10000000)
 print('Elapsed time',t2.elapsed)
