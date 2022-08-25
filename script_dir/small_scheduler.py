@@ -1,4 +1,4 @@
-''' 小型操作系统，一个调度器的实现，费脑筋，要仔细研究'''
+''' 小型操作系统，一个调度器的实现，极度烧脑，要仔细研究'''
 from collections import deque
 from select import select
 
