@@ -7,17 +7,20 @@ from multiprocessing import Process, Queue, current_process, freeze_support
 # Function run by worker processes
 #
 
+
 def worker(input, output):
     count = 0
     for func, args in iter(input.get, 'STOP'):
         result = calculate(func, args)
         count += 1
         output.put(result)
-    print('process exit {},complete {} calculate'.format(current_process().name,count))
+    print('process exit {},complete {} calculate'.format(
+        current_process().name, count))
 
 #
 # Function used to calculate result
 #
+
 
 def calculate(func, args):
     result = func(*args)
@@ -28,9 +31,11 @@ def calculate(func, args):
 # Functions referenced by tasks
 #
 
+
 def mul(a, b):
     time.sleep(0.5*random.random())
     return a * b
+
 
 def plus(a, b):
     time.sleep(0.5*random.random())
@@ -39,6 +44,7 @@ def plus(a, b):
 #
 #
 #
+
 
 def test():
     NUMBER_OF_PROCESSES = 4
