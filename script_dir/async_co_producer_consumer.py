@@ -6,7 +6,7 @@ async def consumer(n,q):
         item = await q.get()
         print('consumer {}: has item {}'.format(n,item))
         if item is None:
-            #one is the signal to stop.
+            # None is the signal to stop.
             q.task_done()
             break
         else:
@@ -32,10 +32,10 @@ async def producer(q,num_workers):
 async def main(loop,num_workers):
     #Create the queue with a fixed size so the producer will block until
     #the consumer pull some items out.
-    q = asyncio.Queue(maxsize=num_workers)
+    q = asyncio.Queue(maxsize=3)
 
     #schedule the producer task
-    consumers = [loop.create_task(consumer(i,q)) for i in range(num_workers)]
+    consumers = [loop.create_task(consumer(i,q)) for i in range(4)]
     prod = loop.create_task(producer(q,num_workers))
     #wait for all of the coroutines to finish
     await asyncio.wait(consumers + [prod])
