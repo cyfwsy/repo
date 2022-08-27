@@ -30,13 +30,14 @@ class Exam:
 
 exam1 = Exam(10, 88)
 exam2 = Exam(100, 44)
-
-print(exam1.math)
-print(exam2.math)
-print(exam1.science)
-print(exam2.science)
-exam1.math = 99
-print(exam1.math)
-exam2.science = 99
-print(exam2.science)
-
+print(vars(Exam))
+print(vars(exam1))
+print(vars(exam2))
+# print(exam1.math)
+# print(exam2.math)
+# print(exam1.science)
+# print(exam2.science)
+# exam1.math = 99
+# print(exam1.math)
+# exam2.science = 99
+# print(exam2.science)

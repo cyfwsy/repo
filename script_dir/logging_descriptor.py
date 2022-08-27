@@ -26,7 +26,7 @@ class Person:
 
     def __init__(self, name, age):
         self.name = name                 # Calls the first descriptor
-        self.age = age                   # Calls the second descriptor
+        self.age = age                 # Calls the second descriptor
 
     def birthday(self):
         self.age += 1
