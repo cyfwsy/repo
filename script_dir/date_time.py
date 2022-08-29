@@ -6,6 +6,6 @@ def date_range(start,stop,step):
         yield start
         start += step
 
-for d in date_range(datetime(2022,1,10),datetime(2022,1,25),timedelta(hours=6)):
+for d in date_range(datetime(2022,8,10),datetime(2022,8,25),timedelta(hours=12)):
     print(d)
 

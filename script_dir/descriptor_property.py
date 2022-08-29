@@ -79,4 +79,5 @@ c.valuex = 100
 print(c.valuex)
 c.valuex = 10000
 print(c.valuex)
+print(vars(C))
 print(vars(c))

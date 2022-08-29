@@ -103,11 +103,12 @@ class Evaluator(NodeVisitor):
 
 if __name__ == '__main__':
     import time
+    print('starting calculation')
     print(sys.getrecursionlimit() )
     start = time.time()
-    a = Number(0)
-    for n in range(30000000):
-        a = Add(a,Number(n))
+    a = Number(100)
+    for n in range(1,1000000):
+        a = Sub(a,Number(n))
         e = Evaluator()
     print(e.visit(a))
     print('lapsed time:',time.time()-start)

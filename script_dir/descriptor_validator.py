@@ -82,9 +82,9 @@ class Component:
         
 # Component('Widget', 'metal', 5)  
 # Component('WIDGET', 'metle', 5)  
-# Component('WIDGET', 'metal', -5)
+Component('WIDGET', 'metal', -5)
 # Component('WIDGET', 'metal', 'V') 
-print(vars(Validator))
+# print(vars(Validator))
 # c = Component('WIDGET', 'metal', 5)
 # print(vars(Component))
 # print(vars(c))
