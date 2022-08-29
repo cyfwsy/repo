@@ -64,5 +64,3 @@ if __name__ == '__main__':
         print('Result:',result)
         num_jobs -= 1
     
-            
-                
