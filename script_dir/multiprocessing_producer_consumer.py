@@ -33,9 +33,8 @@ class Task:
         time.sleep(0.1)  # Pretend to take time to do the work
         return '{self.a} * {self.b} = {product}'.format(self=self, product=self.a * self.b)
 
-
-def __str__(self):
-    return '{self.a} * {self.b}'.format(self=self)
+    def __str__(self):
+        return '{self.a} * {self.b}'.format(self=self)
 
 
 if __name__ == '__main__':
@@ -55,7 +54,7 @@ if __name__ == '__main__':
     # Enqueue jobs
     num_jobs = 16
     for i in range(num_jobs):
-        tasks.put(Task(i, i+1))
+        tasks.put(Task(i, i + 1))
 
     # Add a poison pill for each consumer
     for i in range(num_consumers):
