@@ -5,7 +5,7 @@ import time
 
 class ActivePool:
 
-    def __init__(self,shared_list) -> None:
+    def __init__(self, shared_list) -> None:
         # super(ActivePool, self).__init__()
         # self.msg = multiprocessing.Manager()
         # self.active = self.msg.list()
