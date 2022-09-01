@@ -32,7 +32,7 @@ async def producer(q,num_consumers):
 async def main(loop,num_consumers):
     #Create the queue with a fixed size so the producer will block until
     #the consumer pull some items out.
-    q = asyncio.Queue(maxsize=2)
+    q = asyncio.Queue(maxsize=num_consumers)
 
     #schedule the producer task
     consumers = [loop.create_task(consumer(i,q)) for i in range(num_consumers)]

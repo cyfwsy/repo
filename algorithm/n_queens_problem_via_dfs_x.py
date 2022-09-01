@@ -1,3 +1,4 @@
+"用 queen 數組放 行和列"
 import time
 
 def show(queen,n):
@@ -34,4 +35,4 @@ def main(n):
 
 
 if __name__ == '__main__':
-    main(10)
+    main(9)
