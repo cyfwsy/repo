@@ -150,7 +150,7 @@ class TwoThreeTree(object):
     
 if __name__ == '__main__':
     t_2_3 = TwoThreeTree()
-    for i in [2,7,55,38,21,11,100,99,48,90,430,20]:
+    for i in [2,7,55,500,21,11,100,99,48,90,430,20,-1000,-3000]:
         t_2_3.insert(i)
     print('---------------------------------')
     print('root node:',t_2_3.root)
@@ -166,7 +166,7 @@ if __name__ == '__main__':
     
      
             
-                
+                 
             
             
         
