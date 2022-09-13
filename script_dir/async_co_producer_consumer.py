@@ -29,22 +29,23 @@ async def producer(q,num_consumers):
     await q.join()
     print('producer ending')
 
-async def main(loop,num_consumers):
+async def main(num_consumers):
     #Create the queue with a fixed size so the producer will block until
     #the consumer pull some items out.
     q = asyncio.Queue(maxsize=num_consumers)
 
     #schedule the producer task
-    consumers = [loop.create_task(consumer(i,q)) for i in range(num_consumers)]
-    prod = loop.create_task(producer(q,num_consumers))
+    consumers = [asyncio.create_task(consumer(i,q)) for i in range(num_consumers)]
+    prod = asyncio.create_task(producer(q,num_consumers))
     #wait for all of the coroutines to finish
     await asyncio.wait(consumers + [prod])
 
-event_loop = asyncio.get_event_loop()
-try:
-    event_loop.run_until_complete(main(event_loop,2))
-finally:
-    event_loop.close()
+# event_loop = asyncio.get_event_loop()
+# try:
+#     event_loop.run_until_complete(main(event_loop,2))
+# finally:
+#     event_loop.close()
+asyncio.run(main(3)) #using high level api
 
 
 

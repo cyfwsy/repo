@@ -14,8 +14,8 @@ async def main():
     # Schedule three calls *concurrently*:
     L = await asyncio.gather(
         factorial("A", 2),
-        factorial("B", 3),
-        factorial("C", 4),
+        factorial("B", 10),
+        factorial("C", 20),
     )
     print(L)
 
