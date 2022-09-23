@@ -25,7 +25,7 @@ class ExampleObj:
         print('instance ({})'.format(self.name))
         
 obj = ExampleObj('Myname')
-obj_ref = ExtendedRef(obj,a=1,b=2)
+obj_ref = ExtendedRef(obj,a=1,b=2,c=3)
 print(obj_ref.__dict__)
 print('obj>>>',obj)
 print('obj_ref>>>',obj_ref)
@@ -34,4 +34,4 @@ print('obj_ref>>>',obj_ref)
 print(obj_ref.a,obj_ref.b)
 obj_ref.a = 'abcd'
 print(obj_ref.a)
-# print(obj_ref()[0].do_something())
+print(obj_ref()[0].do_something())
