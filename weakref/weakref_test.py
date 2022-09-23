@@ -13,7 +13,7 @@ class ExpensiveObject:
         return 'ExpensiveObject({})'.format(self.name)
 
     def __del__(self):
-        print('   (Deleting<{}>)'.format(self))
+        print('(Deleting<{}>)'.format(self))
 
 
 def demo(cache_factory):

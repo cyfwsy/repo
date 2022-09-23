@@ -13,4 +13,5 @@ print('Via : obj',obj.name)
 print('Via : ref',r().name)
 print('Via : proxy',p.name)
 del obj
+# print('Via r()',r().name)
 print('Via : proxy',p.name)
